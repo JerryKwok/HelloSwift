@@ -179,8 +179,95 @@ default:
 */
 
 
-print("test")
+func greet(_ persion:String)->String
+{
+    return "Hello "+persion;
+}
 
+print(greet("Peter"))
+
+
+
+func minMax(_ array:[Int])->(min:Int,max:Int)?
+{
+    if array.isEmpty {
+        return nil
+    }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array
+    {
+        if value < currentMin {
+            currentMin = value
+        }else if value > currentMax{
+            currentMax = value
+        }
+    }
+    return (currentMin,currentMax)
+}
+
+let arr = [1,-4,23,3,456,34,-9]
+if let result = minMax(arr)
+{
+    print("min is \(result.min) and max is \(result.max)")
+}
+
+
+func greet(_ persion:String,_ hometown:String)->String
+{
+    return "Hello " + persion + "Glad you could visit from " + hometown
+}
+
+print(greet("Lucy", "USA"))
+
+func defaultValueFunc(_ parameterWithoutDefault:Int=2,parameterWithDefault:Int)
+{
+    print("1:\(parameterWithoutDefault) 2:\(parameterWithDefault)")
+}
+
+defaultValueFunc(parameterWithDefault: 4)
+defaultValueFunc(1, parameterWithDefault: 3)
+
+
+func getTotal(numbers:Int...,count:Int)->Int
+{
+    var totalValue=0
+    for value in numbers
+    {
+        totalValue += value
+    }
+    return totalValue
+}
+
+print(getTotal(numbers:1,2,3,count:3))
+
+func swapTwoInts(_ a:inout Int,_ b:inout Int)
+{
+    let tempValue = a
+    a = b
+    b = tempValue
+}
+
+var a = 1
+var b = 2
+swapTwoInts(&a, &b)
+print("a:\(a) b:\(b)")
+
+func fun1(a:Int,b:Int)->Int
+{
+    return a+b
+}
+
+let fun2:(Int,Int)->Int = fun1
+
+print(fun2(111,222))
+
+func printFunc(_ funcAdd:(Int,Int)->Int,a:Int,b:Int)
+{
+    print(funcAdd(a,b))
+}
+
+printFunc(fun1, a: 9, b: 10)
 
 
 
