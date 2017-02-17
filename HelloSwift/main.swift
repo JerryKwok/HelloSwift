@@ -178,7 +178,7 @@ default:
 }
 */
 
-
+/*
 func greet(_ persion:String)->String
 {
     return "Hello "+persion;
@@ -268,12 +268,61 @@ func printFunc(_ funcAdd:(Int,Int)->Int,a:Int,b:Int)
 }
 
 printFunc(fun1, a: 9, b: 10)
+*/
+
+//普通闭包例子**********************************
+let names = ["C","S","V","A","E","C"]
+func backward(s1:String,s2:String)->Bool
+{
+    return s1 > s2
+}
+var reversedName1 = names.sorted(by: backward)
+print("闭包写法1的结果：\(reversedName1)")
+
+var reversedName2 = names.sorted(by: {(s1:String,s2:String)->Bool in return s1>s2})
+print("闭包写法2的结果：\(reversedName2)")
+
+var reversedName3 = names.sorted(by: {s1,s2 in return s1>s2})
+print("闭包写法3的结果：\(reversedName3)")
+
+var reversedName4 = names.sorted(by: {s1,s2 in s1>s2})
+print("闭包写法4的结果：\(reversedName4)")
+
+var reversedName5 = names.sorted(by: {$0>$1})
+print("闭包写法5的结果：\(reversedName5)")
+
+var reversedName6 = names.sorted(by: >)
+print("闭包写法6的结果：\(reversedName6)")
+
+var reversedName7 = names.sorted(){$0>$1} //尾随闭包写法
+print("闭包写法7的结果：\(reversedName7)")
+
+var reversedName8 = names.sorted{$0>$1} //尾随闭包写法
+print("闭包写法8的结果：\(reversedName8)")
 
 
+//尾随闭包例子***********************************
+let digitNames = [
+    0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: "Four",
+    5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine"
+]
 
+let numbers = [16, 58, 510]
 
+let strings = numbers.map {
+    (number:Int) -> String in
+    var number = number
+    var output = ""
+    repeat {
+        output = digitNames[number % 10]! + output
+        number /= 10
+    } while number > 0
+    return output
+}
 
+print("尾随闭包结果：\(strings)")
 
+//值捕获例子*************************************
 
 
 
